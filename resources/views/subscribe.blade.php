@@ -8,40 +8,46 @@
         body {
             margin: 0;
             height: 100vh;
-            background: #0f172a;
+            background: #f1f5f9; /* light background */
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
-            color: #fff;
+            color: #1e293b;
         }
 
         .card {
-            background: #1e293b;
+            background: #ffffff;
             padding: 40px;
             border-radius: 15px;
             width: 350px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
             margin-bottom: 20px;
+            color: #0f172a;
         }
 
         input {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: none;
+            border: 1px solid #cbd5f5;
             border-radius: 8px;
             outline: none;
-            background: #334155;
-            color: #fff;
+            background: #f8fafc;
+            color: #1e293b;
         }
 
         input::placeholder {
-            color: #94a3b8;
+            color: #64748b;
+        }
+
+        input:focus {
+            border-color: #22c55e;
+            background: #ffffff;
         }
 
         button {
@@ -78,5 +84,4 @@
     </div>
 
 </body>
-
 </html>
