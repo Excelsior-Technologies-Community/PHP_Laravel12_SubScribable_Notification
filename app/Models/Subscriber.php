@@ -14,6 +14,7 @@ class Subscriber extends Model implements CanUnsubscribe
     protected $fillable = [
         'name',
         'email',
+        'frequency',
         'mailing_lists',
         'unsubscribed_at'
     ];
