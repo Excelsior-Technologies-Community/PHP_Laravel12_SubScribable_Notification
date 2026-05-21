@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Subscriber;
 use App\Http\Controllers\SubscriberNotificationController;
+use App\Http\Controllers\SubscriberAdminController;
 
 // Show subscribe form
 Route::get('/', function () {
@@ -20,3 +21,5 @@ Route::get('/unsubscribe/{subscriber}', function (Subscriber $subscriber) {
 
     return view('unsubscribe-success');
 })->name('unsubscribe');
+
+Route::get('/admin/subscribers',[SubscriberAdminController::class,'index'])->name('admin.subscribers');
