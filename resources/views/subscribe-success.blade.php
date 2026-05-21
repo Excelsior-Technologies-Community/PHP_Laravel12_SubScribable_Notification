@@ -8,28 +8,29 @@
         body {
             margin: 0;
             height: 100vh;
-            background: #0f172a;
+            background: #f1f5f9; /* light background */
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: Arial;
-            color: white;
+            color: #1e293b;
         }
 
         .card {
-            background: #1e293b;
+            background: #ffffff;
             padding: 40px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            color: #22c55e;
+            color: #16a34a;
+            margin-bottom: 10px;
         }
 
         p {
-            color: #cbd5f5;
+            color: #475569;
         }
     </style>
 </head>

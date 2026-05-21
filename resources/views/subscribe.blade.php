@@ -3,61 +3,103 @@
 
 <head>
     <title>Subscribe</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <style>
-        body {
+        * {
             margin: 0;
-            height: 100vh;
-            background: #0f172a;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f1f5f9;
+
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
-            color: #fff;
         }
 
         .card {
-            background: #1e293b;
-            padding: 40px;
-            border-radius: 15px;
-            width: 350px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            width: 400px;
+
+            background: #fff;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, .08);
         }
 
         h2 {
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #1e293b;
         }
 
-        input {
+        input,
+        select {
+
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 8px;
+            padding: 14px;
+
+            margin-bottom: 15px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 10px;
+
             outline: none;
-            background: #334155;
-            color: #fff;
+
+            background: #f8fafc;
         }
 
-        input::placeholder {
-            color: #94a3b8;
+        input:focus,
+        select:focus {
+
+            border-color: #22c55e;
+
         }
 
         button {
+
             width: 100%;
-            padding: 12px;
-            background: #22c55e;
+
+            padding: 14px;
+
             border: none;
-            border-radius: 8px;
+
+            border-radius: 10px;
+
+            background: #22c55e;
+
             color: white;
-            font-weight: bold;
+
             cursor: pointer;
-            transition: 0.3s;
+
+            font-weight: bold;
+
+            transition: .3s;
         }
 
         button:hover {
+
             background: #16a34a;
+
+        }
+
+        .error {
+
+            color: red;
+            margin-bottom: 10px;
+            font-size: 14px;
+
         }
     </style>
 </head>
@@ -65,16 +107,100 @@
 <body>
 
     <div class="card">
-        <h2>Subscribe</h2>
 
-        <form method="POST" action="{{ route('subscribe') }}">
+        <h2>
+
+            Subscribe Newsletter
+
+        </h2>
+
+        @if($errors->any())
+
+        <div class="error">
+
+            @foreach($errors->all() as $error)
+
+            <div>
+
+                {{ $error }}
+
+            </div>
+
+            @endforeach
+
+        </div>
+
+        @endif
+
+
+        <form method="POST"
+            action="{{route('subscribe')}}">
+
             @csrf
 
-            <input type="text" name="name" placeholder="Enter your name" required>
-            <input type="email" name="email" placeholder="Enter your email" required>
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter Name"
+                value="{{old('name')}}"
+                required>
 
-            <button type="submit">Subscribe Now</button>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+                value="{{old('email')}}"
+                required>
+
+
+
+            <select
+                name="frequency"
+                required>
+
+                <option value="">
+
+                    Select Notification Frequency
+
+                </option>
+
+
+                <option
+                    value="daily">
+
+                    Daily
+
+                </option>
+
+
+                <option
+                    value="weekly"
+                    selected>
+
+                    Weekly
+
+                </option>
+
+
+                <option
+                    value="monthly">
+
+                    Monthly
+
+                </option>
+
+            </select>
+
+
+            <button>
+
+                Subscribe Now
+
+            </button>
+
         </form>
+
     </div>
 
 </body>

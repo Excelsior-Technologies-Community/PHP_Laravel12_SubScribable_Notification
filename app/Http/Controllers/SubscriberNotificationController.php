@@ -8,57 +8,66 @@ use App\Notifications\WelcomeSubscriberNotification;
 
 class SubscriberNotificationController extends Controller
 {
-    /**
-     * Store subscriber (simple insert)
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:subscribers,email',
+            'name'=>'required',
+            'email'=>'required|email|unique:subscribers,email',
+            'frequency'=>'required'
         ]);
 
-        $subscriber = Subscriber::create([
-            'name' => $request->name,
-            'email' => $request->email,
+        $subscriber=Subscriber::create([
 
-            // ✅ IMPORTANT (NO json_encode)
-            'mailing_lists' => [
-                'newsletter' => true
-            ],
+            'name'=>$request->name,
+            'email'=>$request->email,
+
+            'frequency'=>$request->frequency,
+
+            'mailing_lists'=>[
+                'newsletter'=>true
+            ]
+
         ]);
 
-        // ✅ Send Notification
-        $subscriber->notify(new WelcomeSubscriberNotification('newsletter'));
+        $subscriber->notify(
+            new WelcomeSubscriberNotification('newsletter')
+        );
 
         return view('success');
     }
 
-    /**
-     * Subscribe (update OR create)
-     */
+
     public function subscribe(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
+            'name'=>'required',
+            'email'=>'required|email',
+            'frequency'=>'required'
         ]);
 
-        $subscriber = Subscriber::updateOrCreate(
-            ['email' => $request->email],
-            [
-                'name' => $request->name,
+        $subscriber=Subscriber::updateOrCreate(
 
-                // ✅ IMPORTANT (THIS FIXES NULL ISSUE)
-                'mailing_lists' => [
-                    'newsletter' => true
-                ],
+            ['email'=>$request->email],
+
+            [
+
+                'name'=>$request->name,
+
+                'frequency'=>$request->frequency,
+
+                'mailing_lists'=>[
+                    'newsletter'=>true
+                ]
             ]
         );
 
-        // ✅ Send Notification
-        $subscriber->notify(new WelcomeSubscriberNotification('newsletter'));
+        $subscriber->notify(
+            new WelcomeSubscriberNotification('newsletter')
+        );
 
-        return view('subscribe-success', compact('subscriber'));
+        return view(
+            'subscribe-success',
+            compact('subscriber')
+        );
     }
 }
