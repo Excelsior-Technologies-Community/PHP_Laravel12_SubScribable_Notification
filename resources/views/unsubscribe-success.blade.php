@@ -1,46 +1,19 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Unsubscribed</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background: #0f172a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial;
-            color: white;
-        }
-
-        .card {
-            background: #1e293b;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        h2 {
-            color: #ef4444;
-        }
-
-        p {
-            color: #cbd5f5;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>body{background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center;}</style>
 </head>
-
 <body>
-
-    <div class="card">
-        <h2>❌ You Unsubscribed</h2>
-        <p>We're sad to see you go.</p>
-    </div>
-
+<div class="card p-5 text-center shadow" style="border-radius:20px;max-width:400px">
+    <div class="fs-1 mb-2">😢</div>
+    <h4 class="fw-bold text-danger">You Unsubscribed</h4>
+    <p class="text-muted">We're sad to see you go, {{ $subscriber->name ?? '' }}.</p>
+    @isset($subscriber)
+    <a href="{{ route('resubscribe', $subscriber) }}" class="btn btn-outline-success mt-2">Re-subscribe</a>
+    @endisset
+    <a href="{{ url('/') }}" class="btn btn-outline-secondary mt-2 ms-2">Go Home</a>
+</div>
 </body>
-
 </html>
